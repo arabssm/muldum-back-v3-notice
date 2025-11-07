@@ -38,7 +38,7 @@ public class NoticeController {
         return ResponseEntity.ok(notices);
     }
 
-    @PutMapping("/{noticeId}")
+    @PatchMapping("/{noticeId}")
     public ResponseEntity<Notice> updateNotice(@PathVariable Long noticeId, @RequestBody UpdateNoticeUseCase.UpdateNoticeCommand command) {
         Notice updatedNotice = updateNoticeUseCase.update(noticeId, command);
         return ResponseEntity.ok(updatedNotice);
