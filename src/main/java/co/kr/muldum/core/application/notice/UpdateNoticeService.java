@@ -2,6 +2,8 @@ package co.kr.muldum.core.application.notice;
 
 import co.kr.muldum.core.domain.notice.Notice;
 import co.kr.muldum.core.domain.notice.NoticeRepositoryPort;
+import co.kr.muldum.infrastructure.exception.BusinessException;
+import co.kr.muldum.infrastructure.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +18,7 @@ public class UpdateNoticeService implements UpdateNoticeUseCase {
     @Override
     public Notice update(Long noticeId, UpdateNoticeCommand command) {
         Notice notice = noticeRepositoryPort.findById(noticeId)
-                .orElseThrow(() -> new IllegalArgumentException("Notice not found: " + noticeId));
+                .orElseThrow(() -> new BusinessException(ErrorCode.NOTICE_NOT_FOUND));
 
         // The domain object would have methods to update its state.
         // For now, we'll create a new object, but a real implementation
@@ -27,8 +29,8 @@ public class UpdateNoticeService implements UpdateNoticeUseCase {
                 .teamId(notice.getTeamId())
                 .title(command.title())
                 .content(command.content())
-                .fileId(command.fileId())
-                .isAlerted(command.isAlerted())
+                .fileUrls(command.fileUrls())
+                .deadlineDate(command.deadlineDate())
                 .build();
 
         return noticeRepositoryPort.save(updatedNotice);

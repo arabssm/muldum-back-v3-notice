@@ -20,8 +20,8 @@ public class CreateNoticeService implements CreateNoticeUseCase {
                 .teamId(command.teamId())
                 .title(command.title())
                 .content(command.content())
-                .fileId(command.fileId())
-                .isAlerted(command.isAlerted())
+                .fileUrls(command.fileUrls())
+                .deadlineDate(command.deadlineDate())
                 .build();
 
         return noticeRepositoryPort.save(notice);

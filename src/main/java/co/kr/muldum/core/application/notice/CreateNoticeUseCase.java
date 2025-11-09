@@ -2,6 +2,9 @@ package co.kr.muldum.core.application.notice;
 
 import co.kr.muldum.core.domain.notice.Notice;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public interface CreateNoticeUseCase {
     Notice create(CreateNoticeCommand command);
 
@@ -10,8 +13,8 @@ public interface CreateNoticeUseCase {
             Long teamId,
             String title,
             String content,
-            Long fileId,
-            boolean isAlerted
+            List<String> fileUrls,
+            LocalDate deadlineDate
     ) {
     }
 }

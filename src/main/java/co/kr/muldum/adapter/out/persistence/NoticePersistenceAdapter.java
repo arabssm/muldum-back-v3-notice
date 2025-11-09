@@ -44,8 +44,8 @@ public class NoticePersistenceAdapter implements NoticeRepositoryPort {
                 .teamId(notice.getTeamId())
                 .title(notice.getTitle())
                 .content(notice.getContent())
-                .fileId(notice.getFileId())
-                .isAlerted(notice.isAlerted())
+                .fileUrls(notice.getFileUrls())
+                .deadlineDate(notice.getDeadlineDate())
                 .build();
     }
 
@@ -56,8 +56,8 @@ public class NoticePersistenceAdapter implements NoticeRepositoryPort {
                 .teamId(entity.getTeamId())
                 .title(entity.getTitle())
                 .content(entity.getContent())
-                .fileId(entity.getFileId())
-                .isAlerted(entity.isAlerted())
+                .fileUrls(entity.getFileUrls())
+                .deadlineDate(entity.getDeadlineDate())
                 .build();
     }
 }

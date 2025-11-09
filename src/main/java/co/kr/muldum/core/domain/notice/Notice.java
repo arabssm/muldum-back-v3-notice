@@ -1,9 +1,12 @@
 package co.kr.muldum.core.domain.notice;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Builder
@@ -16,6 +19,6 @@ public class Notice {
     private Long teamId;
     private String title;
     private String content;
-    private Long fileId;
-    private boolean isAlerted;
+    private List<String> fileUrls;
+    private LocalDate deadlineDate;
 }

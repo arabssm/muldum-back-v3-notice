@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Entity
 @Table(name = "notice")
 @Getter
@@ -29,7 +32,10 @@ public class NoticeJpaEntity {
     @Lob
     private String content;
 
-    private Long fileId;
+    @ElementCollection
+    @CollectionTable(name = "notice_file", joinColumns = @JoinColumn(name = "notice_id"))
+    @Column(name = "file_url")
+    private List<String> fileUrls;
 
-    private boolean isAlerted;
+    private LocalDate deadlineDate;
 }
