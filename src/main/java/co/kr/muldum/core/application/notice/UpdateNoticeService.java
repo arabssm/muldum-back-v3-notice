@@ -16,9 +16,13 @@ public class UpdateNoticeService implements UpdateNoticeUseCase {
     private final NoticeRepositoryPort noticeRepositoryPort;
 
     @Override
-    public Notice update(Long noticeId, UpdateNoticeCommand command) {
+    public Notice update(Long userId, Long noticeId, UpdateNoticeCommand command) {
         Notice notice = noticeRepositoryPort.findById(noticeId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.NOTICE_NOT_FOUND));
+
+        if (!notice.getUserId().equals(userId)) {
+            throw new BusinessException(ErrorCode.NOTICE_FORBIDDEN);
+        }
 
         // The domain object would have methods to update its state.
         // For now, we'll create a new object, but a real implementation

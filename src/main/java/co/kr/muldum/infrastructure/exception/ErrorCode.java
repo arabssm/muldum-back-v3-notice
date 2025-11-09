@@ -17,7 +17,8 @@ public enum ErrorCode {
     HANDLE_ACCESS_DENIED(HttpStatus.FORBIDDEN, "C006", "Access is Denied"),
 
     // Notice
-    NOTICE_NOT_FOUND(HttpStatus.NOT_FOUND, "N001", "공지를 찾을 수 없습니다.");
+    NOTICE_NOT_FOUND(HttpStatus.NOT_FOUND, "N001", "공지를 찾을 수 없습니다."),
+    NOTICE_FORBIDDEN(HttpStatus.FORBIDDEN, "N002", "공지에 대한 권한이 없습니다.");
 
 
     private final HttpStatus status;

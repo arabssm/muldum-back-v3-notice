@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface UpdateNoticeUseCase {
-    Notice update(Long noticeId, UpdateNoticeCommand command);
+    Notice update(Long userId, Long noticeId, UpdateNoticeCommand command);
 
     record UpdateNoticeCommand(
             String title,

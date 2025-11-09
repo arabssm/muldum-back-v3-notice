@@ -1,5 +1,5 @@
 package co.kr.muldum.core.application.notice;
 
 public interface DeleteNoticeUseCase {
-    void delete(Long noticeId);
+    void delete(Long userId, Long noticeId);
 }

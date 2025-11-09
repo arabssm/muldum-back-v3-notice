@@ -48,14 +48,18 @@ public class TeacherNoticeController {
     }
 
     @PatchMapping("/{noticeId}")
-    public ApiResponse<Notice> updateNotice(@PathVariable Long noticeId, @RequestBody UpdateNoticeUseCase.UpdateNoticeCommand command) {
-        Notice updatedNotice = updateNoticeUseCase.update(noticeId, command);
+    public ApiResponse<Notice> updateNotice(
+            @AuthenticationPrincipal UserPrincipal user,
+            @PathVariable Long noticeId,
+            @RequestBody UpdateNoticeUseCase.UpdateNoticeCommand command
+    ) {
+        Notice updatedNotice = updateNoticeUseCase.update(user.getId(), noticeId, command);
         return ApiResponse.ok(updatedNotice);
     }
 
     @DeleteMapping("/{noticeId}")
-    public ApiResponse<Void> deleteNotice(@PathVariable Long noticeId) {
-        deleteNoticeUseCase.delete(noticeId);
+    public ApiResponse<Void> deleteNotice(@AuthenticationPrincipal UserPrincipal user, @PathVariable Long noticeId) {
+        deleteNoticeUseCase.delete(user.getId(), noticeId);
         return ApiResponse.of(HttpStatus.NO_CONTENT, "공지사항이 성공적으로 삭제되었습니다.", null);
     }
 }
